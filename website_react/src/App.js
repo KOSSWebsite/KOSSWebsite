@@ -5,9 +5,13 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Edit from './components/Edit';
 import Detail from './components/Detail'
+import Header from './components/header';
+import './App.css';
 
 const App = () => {
   return (
+    <div>
+      <Header />
     <Router>
       <Routes>
           <Route path="/notification" element={<Notification />} />\
@@ -17,6 +21,7 @@ const App = () => {
           <Route path={'/detail'} element={<Detail/>}></Route>
       </Routes>
     </Router>
+    </div>
   );
 };
 
