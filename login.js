@@ -15,7 +15,7 @@ let connectDB =  new MongoClient(url).connect()
 let db;
 connectDB.then((client)=>{ 
   console.log('DB연결성공');
-  db = client.db('koss'); 
+  db = client.db('nodejs-study'); 
   app.listen(process.env.PORT, ()=>{ 
       console.log('http://localhost:8080 에서 서버 실행중');
   })
@@ -27,10 +27,10 @@ const { S3Client } = require('@aws-sdk/client-s3')
 const multer = require('multer')
 const multerS3 = require('multer-s3')
 const s3 = new S3Client({
-  region : 'ap-northeast-2',
+  region : 'us-east-1',
   credentials : {
-        accessKeyId : process.env.S3_KEY,
-        secretAccessKey : process.env.S3_SECRET
+      accessKeyId : process.env.S3_Accesskey,
+      secretAccessKey : process.env.S3_secretAccesskey
   }
 })
 
@@ -47,7 +47,7 @@ app.use(session({
   saveUninitialized : false, 
   store : MongoStore.create({ 
     mongoUrl : process.env.DB_URL, 
-    dbName : 'koss',
+    dbName : 'nodejs-study',
   })
 }))
 
@@ -120,9 +120,3 @@ app.post('/signup', async (요청, 응답)=>{
         });
     }
 })
-
-
-app.use('/notice', require('./routes/notice.js') )
-app.use('/mogacko', require('./routes/mogacko.js') )
-app.use('/study', require('./routes/study.js') )
-app.use('/member', require('./routes/member.js') )
