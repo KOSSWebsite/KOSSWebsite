@@ -10,27 +10,25 @@ koss 동아리의 공지사항 확인 및 공지사항 게시 및 수정, 삭제
 
 - 로그인
     
-    ![image.png](attachment:24504ff4-1d25-4132-bad8-fcb1a18cbbaa:image.png)
+<img src = https://github.com/user-attachments/assets/c57ed045-2447-4069-b4f1-073b70e36ec5>
     
     로그인 탭에 들어가면 로그인을 할 수 있는 페이지가 있습니다. 로그인을 해야 모각코나 스터디 탭을 이용할 수 있습니다.
     
 - 회원가입
 
-![image.png](attachment:dd66c5aa-51e8-4355-b1b7-83a977de0c5a:image.png)
+<img src = https://github.com/user-attachments/assets/385d3236-079d-4956-ac46-0aaa8cce9851>
 
 회원가입이 되어있지 않다면 로그인 페이지 하단의 회원 가입 버튼을 통해 회원 가입을 할 수 있습니다. 이름과 학번 속해있는 모각코 조 아이디 비밀번호와 비밀번호 확인을 입력하고 회원 가입을 할 수 있습니다. 
 
 - 공지사항
 
-![image.png](attachment:f3d6874a-acde-4b72-8de2-20b366cc669f:image.png)
-
+<img src = https://github.com/user-attachments/assets/c45c6a6f-f180-40ff-bcac-b0cb26538df6>
 공지사항 탭에 들어가면 공지사항들을 확인할 수 있습니다. 가장 최근의 공지사항들은 눈에 잘 보일 수 있도록 따로 구분하여 사용자에게 보여줍니다.
 
 공지사항 우상단에 있는 글쓰기 버튼을 누르면
 
 - 글쓰기
-
-![image.png](attachment:0e85718a-200f-4ab6-9329-0d0071229ad4:image.png)
+<img src = https://github.com/user-attachments/assets/09156478-1252-4e39-ac28-84e1905ae789>
 
 공지사항을 등록할 수 있는 페이지입니다. 공지사항의 제목과 내용 그리고 이미지를 업로드할 수 있습니다. 그리고 공지사항의 신청기한과 같은 데드라인을 입력하여 공지사항 탭에서 제목과 함께 보여줄 수 있습니다.
 
@@ -38,7 +36,7 @@ koss 동아리의 공지사항 확인 및 공지사항 게시 및 수정, 삭제
 
 - 공지사항 상세
 
-![image.png](attachment:fb2a84d5-2424-42db-b6b1-a4f579efcf2b:image.png)
+<img src = https://github.com/user-attachments/assets/1466f5da-b117-4a80-b2c9-cda1ec390f97>
 
 공지사항의 제목, 이미지, 내용들을 상세히 볼 수 있는 페이지가 나옵니다.
 
@@ -50,6 +48,6 @@ koss 동아리의 공지사항 확인 및 공지사항 게시 및 수정, 삭제
 
 - 부원
 
-![image.png](attachment:406c1cc7-e029-4c39-bdd9-74f051ffb10c:image.png)
+<img src = https://github.com/user-attachments/assets/38a324fa-1538-4ec5-bdac-94f21a6e20f7>
 
 부원들을 한눈에 파악할 수 있는 탭이 나옵니다. 상단의 셀렉트바를 통해 모각코조와 스터디에 따른 부원들을 쉽게 분류해서 보는 것도 가능합니다.
