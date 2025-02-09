@@ -3,7 +3,6 @@ let connectDB = require('./../database.js') //database.js 파일 경로
 
 let db // 데이터베이스 객체를 저장할 변수
 connectDB.then((client)=>{
-  console.log('DB연결성공')
   db = client.db('koss')
 }).catch((err)=>{
   console.log(err)
