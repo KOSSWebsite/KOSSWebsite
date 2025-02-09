@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const Signup = () => {
     password: '',
     confirmPassword: '',
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,6 +20,7 @@ const Signup = () => {
     e.preventDefault();
     console.log('회원가입 정보:', formData);
     alert('회원가입이 완료되었습니다!');
+    navigate('/login');
   };
 
   return (
