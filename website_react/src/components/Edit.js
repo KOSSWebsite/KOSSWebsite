@@ -6,54 +6,49 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const MarkdownEditor = () => {
-  const [title, setTitle] = useState(""); // 제목 상태
-  const [markdown, setMarkdown] = useState(`필요한 부분을 복사해 바로 사용하세요!
-## 1️⃣ 제목(Header)
-# 제목 1
-## 제목 2
-### 제목 3
-#### 제목 4
----
+  const [title, setTitle] = useState(""); // 제목
+  const [markdown, setMarkdown] = useState(""); // 내용
+  const [img, setImg] = useState(""); // 이미지 URL
+  const [dueDate, setDueDate] = useState(""); // 기한
 
-## 2️⃣ 텍스트 스타일 (Text Styles)
-**굵은 글씨**
-*기울임 글씨*
-~~취소선~~ 
-<center>
-중앙정렬
-</center>
+  // ✅ POST 요청 함수
+  const handleSubmit = async () => {
+    if (!title || !markdown || !dueDate) {
+      alert("제목, 내용, 기한을 모두 입력해주세요!");
+      return;
+    }
 
----
+    const postData = {
+      title,
+      content: markdown,
+      img,
+      dueDate,
+    };
 
-## 3️⃣ 리스트 (Lists)
-### 🔹 순서 없는 리스트
-- 항목 1
-- 항목 2
-  - 하위 항목 2-1
-  - 하위 항목 2-2
-- 항목 3
+    try {
+      const response = await fetch("http://localhost:8080/notice", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(postData),
+      });
 
-### 🔸 순서 있는 리스트
-1. 첫 번째 항목
-2. 두 번째 항목
-3. 세 번째 항목
-
----
-
-## 4️⃣ 링크 & 이미지 (Links & Images)
-[Google로 이동](https://www.google.com)
-
-![이미지 예제](https://via.placeholder.com/150)
-
----
-
-## 5️⃣ 코드 블록 (Code Blocks)
-\`\`\`js
-// JavaScript 코드 예제
-console.log("Hello, Markdown!");
-\`\`\`
-
-`);
+      if (response.ok) {
+        alert("공지사항이 등록되었습니다!");
+        setTitle("");
+        setMarkdown("");
+        setImg("");
+        setDueDate("");
+      } else {
+        alert("등록 실패! 다시 시도해주세요.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("서버 오류 발생!");
+    }
+  };
 
   return (
     <div
@@ -63,7 +58,7 @@ console.log("Hello, Markdown!");
         fontFamily: "Arial, sans-serif",
       }}
     >
-      {/* 상단: 제목 입력 */}
+      {/* 상단: 제목 & 기한 입력 */}
       <div
         style={{
           display: "flex",
@@ -72,7 +67,6 @@ console.log("Hello, Markdown!");
           marginBottom: "20px",
         }}
       >
-        {/* 제목 필드 */}
         <input
           type="text"
           value={title}
@@ -90,20 +84,35 @@ console.log("Hello, Markdown!");
             textAlign: "center",
           }}
         />
-        {/* 버튼들 */}
-        <button
+        <input
+          type="date"
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
           style={{
-            padding: "10px 15px",
+            padding: "10px",
+            fontSize: "16px",
+            border: "1px solid #ddd",
+            borderRadius: "5px",
+            outline: "none",
+          }}
+        />
+      </div>
+
+      {/* 이미지 업로드 */}
+      <div style={{ marginBottom: "15px", display: "flex", gap: "10px" }}>
+        <input
+          type="text"
+          value={img}
+          onChange={(e) => setImg(e.target.value)}
+          placeholder="이미지 URL 입력"
+          style={{
+            flex: 1,
+            padding: "10px",
             fontSize: "14px",
             border: "1px solid #ddd",
             borderRadius: "5px",
-            backgroundColor: "#f5f5f5",
-            cursor: "pointer",
-            marginRight: "10px",
           }}
-        >
-          이미지 업로드
-        </button>
+        />
         <button
           style={{
             padding: "10px 15px",
@@ -114,6 +123,7 @@ console.log("Hello, Markdown!");
             color: "#fff",
             cursor: "pointer",
           }}
+          onClick={handleSubmit}
         >
           등록
         </button>
@@ -123,7 +133,7 @@ console.log("Hello, Markdown!");
       <textarea
         value={markdown}
         onChange={(e) => setMarkdown(e.target.value)}
-        placeholder="내용을 써주세요"
+        placeholder="내용을 입력하세요"
         style={{
           width: "100%",
           height: "300px",
@@ -137,7 +147,7 @@ console.log("Hello, Markdown!");
       />
 
       {/* 미리보기 제목 */}
-      <h2 style={{ fontSize: "18px", marginBottom: "10px", fontWeight: "bold", textAlign: "center"}}>미리보기</h2>
+      <h2 style={{ fontSize: "18px", marginBottom: "10px", fontWeight: "bold", textAlign: "center" }}>미리보기</h2>
 
       {/* 미리보기 */}
       <div
@@ -153,27 +163,6 @@ console.log("Hello, Markdown!");
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeRaw]}
           components={{
-            h1: ({ node, ...props }) => (
-              <h1 style={{ fontSize: "2rem", fontWeight: "bold" }} {...props} />
-            ),
-            h2: ({ node, ...props }) => (
-              <h2 style={{ fontSize: "1.75rem", fontWeight: "bold" }} {...props} />
-            ),
-            h3: ({ node, ...props }) => (
-              <h3 style={{ fontSize: "1.5rem", fontWeight: "bold" }} {...props} />
-            ),
-            h4: ({ node, ...props }) => (
-              <h4 style={{ fontSize: "1.25rem", fontWeight: "bold" }} {...props} />
-            ),
-            ul: ({ node, ...props }) => (
-              <ul style={{ marginLeft: "20px", listStyleType: "disc" }} {...props} />
-            ),
-            ol: ({ node, ...props }) => (
-              <ol style={{ marginLeft: "20px", listStyleType: "decimal" }} {...props} />
-            ),
-            li: ({ node, ...props }) => (
-              <li style={{ marginBottom: "5px" }} {...props} />
-            ),
             code({ node, inline, className, children, ...props }) {
               const match = /language-(\w+)/.exec(className || "");
               return !inline && match ? (
