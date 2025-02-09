@@ -5,19 +5,19 @@
     align-items: center; /* 세로 중앙 정렬 */
     gap: 1vw; /* 두 요소 사이 간격 */
     height: 13vh; /* 화면 높이에 비례한 크기 */
-}  
+}
 
 .emoji {
     font-size: 50px;
 }
-  
+
 .text {
     font-size: 24px;
     font-weight: bold;
 }
 
 .writing {
-    padding-left: 70vw; 
+    padding-left: 70vw;
 }
 
 /* 진행 중인 공지사항 */
@@ -59,12 +59,12 @@
     justify-content: flex-start; /* 왼쪽 정렬 */
     width: 90%; /* 컨테이너 전체 사용 */
 }
-  
+
 .main-title {
     font-size: 20px;
     font-weight: bold;
 }
-  
+
 .main-date {
     font-size: 16px;
 }
