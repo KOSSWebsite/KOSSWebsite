@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors'); // ✅ CORS 추가
 const app = express();
 const { MongoClient, ObjectId } = require('mongodb');
 const methodOverride = require('method-override');
@@ -9,6 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+
 
 const url = process.env.DB_URL;
 let connectDB = new MongoClient(url).connect();
