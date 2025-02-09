@@ -5,18 +5,26 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Edit from './components/Edit';
 import Detail from './components/Detail'
+import Header from './components/header';
+import Main from './components/Main';
+import './App.css';
+
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-          <Route path="/notification" element={<Notification />} />\
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/edit" element={<Edit />}></Route>
-          <Route path={'/detail'} element={<Detail/>}></Route>
-      </Routes>
-    </Router>
+      <div>
+          <Router>
+              <Header/>
+              <Routes>
+                  <Route path={'/'} element={<Main/>}></Route>
+                  <Route path="/notification" element={<Notification/>}/>
+                  <Route path="/login" element={<Login/>}/>
+                  <Route path="/signup" element={<Signup/>}/>
+                  <Route path="/edit" element={<Edit/>}></Route>
+                  <Route path={'/detail'} element={<Detail/>}></Route>
+              </Routes>
+          </Router>
+      </div>
   );
 };
 
