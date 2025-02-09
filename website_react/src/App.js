@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Notification from './components/notification/Notification';
+import Notification from './components/Notification';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Member from './components/Member';

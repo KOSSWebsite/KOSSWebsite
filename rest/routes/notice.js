@@ -62,6 +62,7 @@ router.get('/:id', async (req, res) => {
 
 // 공지사항 등록
 router.post('/', async (req, res) => {
+    console.log(req.user);
     try {
         upload.single('img')(req, res, async (err)=>{
             if (err) {
@@ -75,8 +76,6 @@ router.post('/', async (req, res) => {
                 content : content,
                 dueDate : dueDate,
                 img : req.file ? req.file.location : '',
-                user : req.user._id,
-                username : req.user.username,
                 date : new Date()
             }
             const result = await db.collection('notice').insertOne(newNotice);
