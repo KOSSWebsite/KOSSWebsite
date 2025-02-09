@@ -54,8 +54,13 @@ app.use(session({
 ///로그인 세션 일치 불일치 만들기///
 app.use(passport.session()) 
 
-passport.use(new LocalStrategy(async (입력한아이디, 입력한비번, cb) => {
-  let result = await db.collection('user').findOne({ userName : 입력한아이디})
+passport.use(new LocalStrategy({
+  usernameField: 'userId', // 로그인 시 받는 필드 이름을 userId로 설정
+  passwordField: 'password' 
+  },
+  async (입력한아이디, 입력한비번, cb) => {
+  let result = await db.collection('user').findOne({ userId : 입력한아이디})
+  console.log(result)
   if (!result) {
     return cb(null, false, { message: '아이디 DB에 없음' })
   }
@@ -83,21 +88,32 @@ passport.deserializeUser(async (user, done) => {
 })
 ////
 
-app.post('/login', async (요청, 응답, next)=>{
+app.post('/login', async (요청, 응답, next) => {
     passport.authenticate('local', (error, user, info) => {
-        if (error) return 응답.status(500).json(error)
-        if (!user) return 응답.status(401).json(info.message)
+        if (error) {
+            console.error('로그인 중 오류 발생:', error);
+            return 응답.status(500).json(error);
+        }
+        if (!user) {
+            console.warn('로그인 실패:', info.message);
+            return 응답.status(401).json(info.message);
+        }
         요청.logIn(user, (err) => {
-            if (err) return next(err)
-         })
-    })(요청, 응답, next)  
-})
+            if (err) {
+                console.error('세션 저장 중 오류 발생:', err);
+                return next(err);
+            }
+            console.log(`로그인 성공: ${user.username} (ID: ${user._id})`);
+            응답.json({ message: '로그인 성공', user });
+        });
+    })(요청, 응답, next);
+});
 
 app.post('/signup', async (요청, 응답)=>{
 
     let 해시 = await bcrypt.hash(요청.body.password, 10)
     console.log(해시)
-    let usern = await db.collection('user').findOne({userName : 요청.body.userName});
+    let usern = await db.collection('user').findOne({username : 요청.body.username});
     if(usern != null){
         응답.send('이미 존재하는 이름입니다.')
         return ;
@@ -110,13 +126,12 @@ app.post('/signup', async (요청, 응답)=>{
     }
     else{
         await db.collection('user').insertOne({
-            userName: 요청.body.username, 
+            username: 요청.body.username, 
             userId : 요청.body.userId,
             password : 해시,
-            studentNumber : 요청.body.student,
+            studentNumber : 요청.body.studentNumber,
             mogacko : 요청.body.mogacko,
             study : 요청.body.study
-
         });
     }
 })
