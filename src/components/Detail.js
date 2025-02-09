@@ -8,7 +8,7 @@ const Detail = () => {
     // 데이터를 가져오는 함수
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/notice");
+        const response = await axios.get("http://localhost:8080/notice/67a8bc954e3a2580f9286dc5");
         setNotice(response.data); // API 응답 데이터를 상태에 저장
       } catch (error) {
         console.error("데이터를 가져오는 중 오류 발생:", error);
