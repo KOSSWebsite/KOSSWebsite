@@ -5,7 +5,6 @@ const { ObjectId } = require('mongodb') // mongodb의 ObjectId 객체 호출
 
 let db // 데이터베이스 객체를 저장할 변수
 connectDB.then((client)=>{
-  console.log('DB연결성공')
   db = client.db('koss')
 }).catch((err)=>{
   console.log(err)
@@ -53,7 +52,7 @@ router.get('/', async (req, res) => {
 // 공지사항 상세조회
 router.get('/:id', async (req, res) => {
     try {
-        let notice = await db.collection('notice').findOne({_id : new ObjectId(요청.params.id)})
+        let notice = await db.collection('notice').findOne({_id : new ObjectId(req.params.id)})
       if (!notice) return res.status(404).json({ message: '공지사항을 찾을 수 없습니다.' });
         res.json(notice);
     } catch (error) {
