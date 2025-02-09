@@ -3,7 +3,7 @@ import './Notification.css';
 
 const Notification = () => {
     return (
-    <div className="App">
+    <div className="notification">
 
       <div className='top'>
         <p className="emoji">📣</p>
