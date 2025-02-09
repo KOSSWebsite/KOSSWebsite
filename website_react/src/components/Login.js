@@ -10,7 +10,7 @@ const Login = () => {
     e.preventDefault();
     if (email === 'test@example.com' && password === 'password') {
       alert('로그인 성공!');
-      navigate('/dashboard');
+      navigate('/');
     } else {
       alert('이메일 또는 비밀번호가 잘못되었습니다.');
     }
