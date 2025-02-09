@@ -1,0 +1,102 @@
+/* 상단 */
+.top {
+    justify-content: center; /* 가운데 정렬 */
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 1vw; /* 두 요소 사이 간격 */
+    height: 13vh; /* 화면 높이에 비례한 크기 */
+}  
+
+.emoji {
+    font-size: 50px;
+}
+  
+.text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.writing {
+    padding-left: 70vw; 
+}
+
+/* 진행 중인 공지사항 */
+.noticeContainer {
+    display: flex;
+    gap: 2.5vw; /* 두 박스 사이 간격 */
+    justify-content: center; /* 가운데 정렬 */
+    flex-wrap: wrap; /* 화면이 작아질 경우 줄바꿈 */
+}
+
+.notice {
+    background-color: #f4f4f4; /* 연한 회색 배경 */
+    border-radius: 28px; /* 모서리 둥글게 */
+    width: 607px; /* 박스 크기 */
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 내부 요소 중앙 정렬 */
+    text-align: center;
+    overflow: hidden;
+}
+
+.imageContainer {
+    width: 100%;
+    overflow: hidden;
+}
+
+.noticeImage {
+    width: 100%; /* 부모 요소에 꽉 차게 */
+    height: 375px; /* 원하는 높이 */
+    object-fit: cover; /* 이미지가 박스를 채우도록 */
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+}
+
+.textContainer {
+    display: flex; /* 가로 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 5px; /* 제목과 날짜 사이 간격 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    width: 90%; /* 컨테이너 전체 사용 */
+}
+  
+.main-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+  
+.main-date {
+    font-size: 16px;
+}
+
+/* 지난 게시물 */
+.listContainer {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    width: 87vw; /* 전체 너비 설정 */
+    padding-top: 6vh;
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+.list {
+    display: flex;
+    justify-content: space-between; /* 좌우 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    padding: 1vh 0;
+    gap: 1vw; /* 두 요소 사이 간격 */
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #f4f4f4; /* 연한 회색 구분선 */
+    border: none;
+}
+
+.title {
+    font-size: 18px;
+}
+
+.date {
+    font-size: 15px;
+}
