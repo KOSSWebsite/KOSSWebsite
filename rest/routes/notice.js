@@ -5,7 +5,6 @@ const { ObjectId } = require('mongodb') // mongodb의 ObjectId 객체 호출
 
 let db // 데이터베이스 객체를 저장할 변수
 connectDB.then((client)=>{
-  console.log('DB연결성공')
   db = client.db('koss')
 }).catch((err)=>{
   console.log(err)

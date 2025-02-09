@@ -83,21 +83,22 @@ const Signup = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">모각코 조</label>
             <select
-              name="mogacko"
-              value={formData.mogacko}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                name="mogacko"
+                value={formData.mogacko}
+                onChange={handleChange}
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="" disabled>조를 선택해주세요</option>
-              <option value="1조">1조</option>
-              <option value="2조">2조</option>
-              <option value="3조">3조</option>
-              <option value="4조">4조</option>
-              <option value="5조">5조</option>
-              <option value="6조">6조</option>
-              <option value="7조">7조</option>
-              <option value="8조">8조</option>
+              <option value="종강핑">종강핑</option>
+              <option value="고기 잘 사주는 원재">고기 잘 사주는 원재</option>
+              <option value="전생했더니 이민우였던 건에 대하여">전생했더니 이민우였던 건에 대하여</option>
+              <option value="임태근 님은 고백받고 싶어">임태근 님은 고백받고 싶어</option>
+              <option value="세븐일레븐">세븐일레븐</option>
+              <option value="포동포동">포동포동</option>
+              <option value="미룬이">미룬이</option>
+              <option value="코드마스터즈">코드마스터즈</option>
+              <option value="이뽀유빈">이뽀유빈</option>
             </select>
           </div>
 
@@ -112,11 +113,10 @@ const Signup = () => {
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="" disabled>스터디를 선택해주세요</option>
-              <option value="Python">Python</option>
-              <option value="C++">C++</option>
-              <option value="Java">Java</option>
-              <option value="FEBE">FE/BE</option>
-              <option value="AI">인공지능</option>
+              <option value="FEBE 프로젝트 스터디">FEBE 프로젝트 스터디</option>
+              <option value="Java 스터디">Java 스터디</option>
+              <option value="Typescript 스터디">Typescript 스터디</option>
+              <option value="인공지능 스터디">인공지능 스터디</option>
             </select>
           </div>
 
