@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const {MongoClient, ObjectId} = require('mongodb');
 const methodOverride = require('method-override');
+const cors = require('cors');
 require('dotenv').config();
 
 app.use(express.json()); 
 app.use(express.urlencoded(({extended: true}))); 
-app.use(methodOverride('_method')); 
+app.use(methodOverride('_method'));
+app.use(cors({ origin: 'http://localhost:3000', credentials: true}));
 
 
 const url = process.env.DB_URL;

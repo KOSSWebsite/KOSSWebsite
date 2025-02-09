@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
 import koss1 from '../image/KOSS1.png';
@@ -6,6 +6,24 @@ import koss2 from '../image/KOSS2.png';
 
 function Header() {
   const navigate = useNavigate();
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
+
+  const handleAuth = () => {
+    if (userId) {
+      localStorage.removeItem('userId'); // 저장된 로그인 정보 삭제
+      setUserId(null);
+      alert("로그아웃 되었습니다.");
+    } else {
+      navigate('/login');
+    }
+  };
   return (
     <div>
       <nav
@@ -31,19 +49,19 @@ function Header() {
                   style={{width: '60px', height: '30px'}}
                   onClick={() => navigate('/')}
               />
-              <p style={{marginLeft: 50}} onClick={() => navigate('/notification')}>공지사항</p>
-              <p style={{marginLeft: 30}}>모각코</p>
-              <p style={{marginLeft: 30}}>스터디</p>
-              <p style={{marginLeft: 30}}>부원</p>
+              <p style={{cursor: 'pointer', marginLeft: 50}} onClick={() => navigate('/notification')}>공지사항</p>
+              <p style={{cursor: 'pointer', marginLeft: 30}}>모각코</p>
+              <p style={{cursor: 'pointer', marginLeft: 30}}>스터디</p>
+              <p style={{cursor: 'pointer', marginLeft: 30}} onClick={() => navigate('/member')}>부원</p>
           </div>
 
 
           <div>
               <p
-                  style={{margin: 0, fontSize: '16px'}}
-                  onClick={() => navigate('/login')}
+                  style={{cursor: 'pointer', margin: 0, fontSize: '16px'}}
+                  onClick={handleAuth}
               >
-                  로그인
+                  {userId ? `${userId}님, 환영합니다!` : "로그인"}
               </p>
           </div>
       </nav>

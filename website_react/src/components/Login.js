@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (email === 'test@example.com' && password === 'password') {
-      alert('로그인 성공!');
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post('http://localhost:8080/login', {
+      userId: userId,
+      password: password,
+    });
+
+    if (response.status === 200) {
+      localStorage.setItem("userId", userId);
       navigate('/');
-    } else {
-      alert('이메일 또는 비밀번호가 잘못되었습니다.');
+      window.location.reload();
     }
-  };
+  } catch (error) {
+    console.error('로그인 실패:', error);
+    alert('아이디 또는 비밀번호가 잘못되었습니다.');
+  }
+};
+
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -23,10 +34,10 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <input
-              type="email"
-              placeholder="이메일"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="userId"
+              placeholder="아이디"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
